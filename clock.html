@@ -1,0 +1,123 @@
+﻿<HTML>
+<HEAD>
+<SCRIPT language="JavaScript">
+  //  2012年5月15日　コメントを多少追加
+
+  t = 0;
+  //----------------------dspClock--------------------//
+
+  //時間の表示
+  function DspClk() {
+    //date関数を利用して、時・分・秒の取得
+    DD = new Date();
+    Hours = DD.getHours();
+    Minutes = DD.getMinutes();
+    Seconds = DD.getSeconds();
+    
+    status = Hours + "時" + Minutes + "分" + Seconds +"秒";
+    document.ClkForm.Input.value = Hours + "時" + Minutes + "分" + Seconds +"秒";
+    
+    //各メソッドの呼び出し
+    drawHours(parseInt(Hours));        //内側(時)※以下「時」
+    drawMinutes(parseInt(Minutes));　　//真ん中(分)※以下「分」
+    drawSecond(parseInt(Seconds));     //外側(秒)※以下「秒」
+  }
+
+  //----------------------drawHours-------------------//
+
+  //時の描画
+  function drawHours(hours){
+    
+    var canvas = document.getElementById('clockCanvas_h');    //描画領域の確保
+    if ( ! canvas || ! canvas.getContext ) { return false; }
+    var ctx = canvas.getContext("2d");
+
+    ctx.lineWidth = 8;
+    ctx.lineCap = "round";
+    ctx.beginPath();
+    ctx.arc(75, 75, 40, (270*Math.PI/180),  (hours*15*Math.PI/180)- (Math.PI/2), false);
+    ctx.stroke();
+    if(hours == 0){
+      ctx.clearRect(0,0,150,150);
+    }
+    ctx.closePath();
+  }
+  
+  //分の描画
+  function drawMinutes(minutes){
+    var canvas = document.getElementById('clockCanvas_m');    //描画領域の確保
+    if ( ! canvas || ! canvas.getContext ) { return false; }
+    var ctx = canvas.getContext("2d");     
+
+    ctx.lineWidth = 8;
+    ctx.lineCap = "round";
+    ctx.beginPath();
+    ctx.arc(75, 75, 50, (270*Math.PI/180),  (minutes*6*Math.PI/180)- (Math.PI/2), false);
+    ctx.stroke();
+    if(minutes == 0){
+      ctx.clearRect(0,0,150,150);
+    }
+    ctx.closePath();
+  }
+
+  //秒の描画
+  function drawSecond(seconds){
+    var canvas = document.getElementById('clockCanvas_s');    //描画領域の確保
+    if ( ! canvas || ! canvas.getContext ) { return false; }
+    var ctx = canvas.getContext("2d");
+
+    ctx.lineWidth = 8;
+    ctx.lineCap = "round";
+    ctx.beginPath();
+
+
+    //============================ここから==============================//
+    ctx.arc(75, 75, 60, (3/2*Math.PI), (seconds*6*Math.PI/180)- (Math.PI/2), false);
+    ctx.stroke();
+    if(seconds == 0){
+      ctx.clearRect(0,0,150,150);
+    }
+    ctx.closePath();
+  }
+</SCRIPT>
+
+<style type="text/css">
+  #clockCanvas_h {
+    background-color:tranceparent;
+    width:150px;
+    height:150px;
+    position:absolute;
+  }
+   #clockCanvas_m {
+    background-color:tranceparent;
+    width:150px;
+    height:150px;
+    position:absolute;
+  }
+   #clockCanvas_s {
+    background-color:tranceparent;
+    width:150px;
+    height:150px;
+    position:absolute;
+  }
+</style>
+
+</HEAD>
+<BODY>
+<SCRIPT language="JavaScript">
+t = setInterval("DspClk()", 50);
+</SCRIPT>
+<FORM name="ClkForm">
+  <INPUT type="text" name="Input">
+
+</FORM>
+<div>
+  <canvas id="clockCanvas_h" width="150" height="150">
+  </canvas>
+  <canvas id="clockCanvas_m" width="150" height="150">
+  </canvas>
+  <canvas id="clockCanvas_s" width="150" height="150">
+  </canvas>
+</div>
+
+</BODY>
