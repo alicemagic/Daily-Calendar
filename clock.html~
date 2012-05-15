@@ -1,7 +1,7 @@
 ﻿<HTML>
 <HEAD>
 <SCRIPT language="JavaScript">
-
+<<<<<<< HEAD
   //  2012年5月15日　コメントを多少追加
 
   t = 0;
@@ -10,7 +10,12 @@
   //時間の表示
   function DspClk() {
     //date関数を利用して、時・分・秒の取得
+=======
+  t = 0;
+  //----------------------dspClock--------------------//
 
+  function DspClk() { 
+>>>>>>> 75a3bccdd63f74b4e726698a0d495d665ea87f24
     DD = new Date();
     Hours = DD.getHours();
     Minutes = DD.getMinutes();
@@ -18,7 +23,7 @@
     
     status = Hours + "時" + Minutes + "分" + Seconds +"秒";
     document.ClkForm.Input.value = Hours + "時" + Minutes + "分" + Seconds +"秒";
-
+<<<<<<< HEAD
     
     //各メソッドの呼び出し
     drawHours(parseInt(Hours));        //内側(時)※以下「時」
@@ -32,7 +37,17 @@
   function drawHours(hours){
     
     var canvas = document.getElementById('clockCanvas_h');    //描画領域の確保
+=======
 
+    drawHours(parseInt(Hours));
+    drawMinutes(parseInt(Minutes));
+    drawSecond(parseInt(Seconds));
+  }
+
+  //----------------------drawHours-------------------//
+  function drawHours(hours){
+    var canvas = document.getElementById('clockCanvas_h');
+>>>>>>> 75a3bccdd63f74b4e726698a0d495d665ea87f24
     if ( ! canvas || ! canvas.getContext ) { return false; }
     var ctx = canvas.getContext("2d");
 
@@ -46,13 +61,20 @@
     }
     ctx.closePath();
   }
-
+<<<<<<< HEAD
   
   //分の描画
   function drawMinutes(minutes){
     var canvas = document.getElementById('clockCanvas_m');    //描画領域の確保
     if ( ! canvas || ! canvas.getContext ) { return false; }
     var ctx = canvas.getContext("2d");     
+=======
+
+  function drawMinutes(minutes){
+    var canvas = document.getElementById('clockCanvas_m');
+    if ( ! canvas || ! canvas.getContext ) { return false; }
+    var ctx = canvas.getContext("2d");
+>>>>>>> 75a3bccdd63f74b4e726698a0d495d665ea87f24
 
     ctx.lineWidth = 8;
     ctx.lineCap = "round";
@@ -65,11 +87,14 @@
     ctx.closePath();
   }
 
-
+<<<<<<< HEAD
   //秒の描画
   function drawSecond(seconds){
     var canvas = document.getElementById('clockCanvas_s');    //描画領域の確保
-
+=======
+  function drawSecond(seconds){
+    var canvas = document.getElementById('clockCanvas_s');
+>>>>>>> 75a3bccdd63f74b4e726698a0d495d665ea87f24
     if ( ! canvas || ! canvas.getContext ) { return false; }
     var ctx = canvas.getContext("2d");
 
