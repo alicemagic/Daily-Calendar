@@ -1,15 +1,10 @@
-<HTML>
-<BODY>
-<center>
-
-
-<script language="JavaScript"> 
+<SCRIPT LANGUAGE="JavaScript">
 <!--
 var today=new Date();
 var this_day=today.getDay();
 var this_date=today.getDate();
 var this_month=today.getMonth()+1;
-var this_year=today.getFullYear(); 
+var this_year=today.getFullYear();
 
 function Day_Text (day_num) {
   var Day=new Array();
@@ -46,16 +41,6 @@ var d = new Date();
 var h = d.getHours();
 if (DayName == "Sun") DayName = "<font color=red>"+DayName+"</font>";
 if (DayName == "Sat") DayName = "<font color=blue>"+DayName+"</font>";
-
-MonthName = "<font size=2>"+MonthName+"</font>";
-this_date = "<font size=7><strong>"+this_date+"</strong></font>";
-DayName = "<font size=2>"+DayName+"</font>";
 document.write("<TABLE BORDER=3 BGCOLOR=WHITE cellpadding=6 cellspacing=4>");
-document.write("<TR><TD align=center nowrap>"+MonthName+"<br>"+this_date+"<br>"+DayName);
+document.write("<TR><TD align=center nowrap><font size=5>"+MonthName+"Å@"+this_date+"ì˙Å@"+DayName);
 document.write("</TD></TR></TABLE><br>");
-</script> 
-
-</SCRIPT>
-</center>
-</BODY>
-</HTML>
