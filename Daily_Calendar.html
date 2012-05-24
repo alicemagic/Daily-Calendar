@@ -3,47 +3,25 @@
 <center>
 
 
-<script language="JavaScript"> 
-<!--
+<script language="JavaScript">
 var today=new Date();
 var this_day=today.getDay();
 var this_date=today.getDate();
-var this_month=today.getMonth()+1;
-var this_year=today.getFullYear(); 
+var this_month=today.getMonth();
+var this_year=today.getFullYear();
 
 function Day_Text (day_num) {
-  var Day=new Array();
-  Day[0]="Sun";
-  Day[1]="Mon";
-  Day[2]="Tue";
-  Day[3]="Web";
-  Day[4]="Thurs";
-  Day[5]="Fri";
-  Day[6]="Sat";
+  var Day=new Array("Sun","Mon","Tue","Web","Thurs","Fri","Sat");
   return Day[day_num];
 }
 
 var DayName=Day_Text(this_day);
 
 function Month_Text (month_num) {
-  var Month=new Array();
-  Month[1]="Jan";
-  Month[2]="Feb";
-  Month[3]="Mar";
-  Month[4]="Apr";
-  Month[5]="May";
-  Month[6]="Jun";
-  Month[7]="Jul";
-  Month[8]="Aug";
-  Month[9]="Sep";
-  Month[10]="Oct";
-  Month[11]="Nov";
-  Month[12]="Dec";
+  var Month=new Array("Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec");
   return Month[month_num];
 }
 var MonthName=Month_Text(this_month);
-var d = new Date();
-var h = d.getHours();
 if (DayName == "Sun") DayName = "<font color=red>"+DayName+"</font>";
 if (DayName == "Sat") DayName = "<font color=blue>"+DayName+"</font>";
 
@@ -53,9 +31,9 @@ DayName = "<font size=2>"+DayName+"</font>";
 document.write("<TABLE BORDER=3 BGCOLOR=WHITE cellpadding=6 cellspacing=4>");
 document.write("<TR><TD align=center nowrap>"+MonthName+"<br>"+this_date+"<br>"+DayName);
 document.write("</TD></TR></TABLE><br>");
-</script> 
 
-</SCRIPT>
+
+</script>
 </center>
 </BODY>
 </HTML>
