@@ -1,3 +1,6 @@
+<!-- «ˆø—pƒTƒCƒg«
+http://bunjin.com/java/himekuri.html
+-->
 <HTML>
 <BODY>
 <center>
@@ -10,6 +13,7 @@ var this_date=today.getDate();
 var this_month=today.getMonth();
 var this_year=today.getFullYear();
 
+<!-- —j“ú‚ÌéŒ¾ -->
 function Day_Text (day_num) {
   var Day=new Array("Sun","Mon","Tue","Web","Thurs","Fri","Sat");
   return Day[day_num];
@@ -17,17 +21,24 @@ function Day_Text (day_num) {
 
 var DayName=Day_Text(this_day);
 
+<!-- ŠeŒŽ‚ÌéŒ¾ -->
 function Month_Text (month_num) {
   var Month=new Array("Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec");
   return Month[month_num];
 }
 var MonthName=Month_Text(this_month);
+
+<!-- “ú—j‚È‚çÔ•¶Žš‚ÖA“y—j‚È‚çÂ•¶Žš‚Ö -->
 if (DayName == "Sun") DayName = "<font color=red>"+DayName+"</font>";
 if (DayName == "Sat") DayName = "<font color=blue>"+DayName+"</font>";
 
+
+<!-- Še•¶Žš‚ÌÝ’è -->
 MonthName = "<font size=2>"+MonthName+"</font>";
 this_date = "<font size=7><strong>"+this_date+"</strong></font>";
 DayName = "<font size=2>"+DayName+"</font>";
+
+<!-- •`‰æ -->
 document.write("<TABLE BORDER=3 BGCOLOR=WHITE cellpadding=6 cellspacing=4>");
 document.write("<TR><TD align=center nowrap>"+MonthName+"<br>"+this_date+"<br>"+DayName);
 document.write("</TD></TR></TABLE><br>");

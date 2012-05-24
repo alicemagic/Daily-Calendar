@@ -1,0 +1,59 @@
+<!-- 2012/05/24 現在バグ発生中 -->
+<!-- ↓引用サイト↓
+  http://libro.tuyano.com/index3?id=95001
+-->
+<html>
+    <head> 
+        <title>Sample Page</title>
+        <script src="http://www.google.com/jsapi"></script>
+          <script language="JavaScript">
+      <!-- googleカレンダーから予定を持ってくる -->
+        google.load("gdata","2");
+ 
+        var service = null;
+        
+        <!-- 予定を持ってくる場所を指定 -->
+        var url = "http://www.google.com/calendar/feeds/ h3d6rk1th4e58h8qo9q6bcoco8@group.calendar.google.com/public/full";
+         
+        google.setOnLoadCallback(getMyFeed);
+
+        <!-- 年月日を指定して予定を持ってくる -->
+        function getMyFeed(){
+            service = new google.gdata.calendar.CalendarService("Daily_Calendar");
+            query = new google.gdata.calendar.CalendarEventQuery(url);
+            query.setOrderBy(google.gdata.calendar.CalendarEventQuery.ORDERBY_START_TIME);
+            query.setSortOrder(google.gdata.calendar.CalendarEventQuery.SORTORDER_ASCENDING);
+            query.setSingleEvents(true);
+            query.setMaxResults(10);
+            var start = new google.gdata.DateTime.fromIso8601("2012-01-01");
+            var end = new google.gdata.DateTime.fromIso8601("2012-12-31"); 
+            query.setMinimumStartTime(start);
+            query.setMaximumStartTime(end);
+            service.getEventsFeed(query, callback, handleError);
+        }
+
+
+        <!-- 予定を描画 -->
+        function callback(result) {
+            var entries = result.feed.entry;
+            var res = "";
+            for (var i = 0; i < entries.length; i++) {
+                var entry = entries[i];
+                var title = entry.getTitle().getText();
+                var times = entry.getTimes();
+                res += (i + 1) + ": " + title + " (" + times[0].startTime + ")<br />";
+            }
+            document.getElementById("view").innerHTML = res;
+        }
+
+        <!-- エラーが出た場合の処理 -->
+        function handleError(error) {
+          document.getElementById("view").innerHTML = error;
+        }
+     </script>
+    </head>
+    <body>
+        <div id="view" style="color:#096;"></div>
+    </body>
+
+</HTML>
