@@ -1,5 +1,5 @@
 <!-- 2012/05/29 予定を引用できないバグを解消
-                統合用？                
+                onmouseover関数用のテスト画像を配置                
 -->
 <!-- ↓引用サイト↓
   http://libro.tuyano.com/index3?id=95001
@@ -19,6 +19,9 @@
          
         google.setOnLoadCallback(getMyFeed);
 
+
+        document.write("<img src='予定.png' border='0'>");
+        
         <!-- 年月日を指定して予定を持ってくる -->
         function getMyFeed(){
             service = new google.gdata.calendar.CalendarService("Daily_Calendar");
@@ -55,7 +58,6 @@
      </script>
     </head>
     <body>
-        <div id="view" style="color:#096;"></div>
+      <div id="view" style="color:#096;"></div>
     </body>
-
 </HTML>
