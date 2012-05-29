@@ -1,4 +1,4 @@
-<!-- 2012/05/24 現在バグ発生中 -->
+<!-- 2012/05/29 予定を引用できないバグを解消 -->
 <!-- ↓引用サイト↓
   http://libro.tuyano.com/index3?id=95001
 -->
@@ -13,7 +13,7 @@
         var service = null;
         
         <!-- 予定を持ってくる場所を指定 -->
-        var url = "http://www.google.com/calendar/feeds/ h3d6rk1th4e58h8qo9q6bcoco8@group.calendar.google.com/public/full";
+        var url = "http://www.google.com/calendar/feeds/h3d6rk1th4e58h8qo9q6bcoco8@group.calendar.google.com/public/full";
          
         google.setOnLoadCallback(getMyFeed);
 
@@ -41,7 +41,7 @@
                 var entry = entries[i];
                 var title = entry.getTitle().getText();
                 var times = entry.getTimes();
-                res += (i + 1) + ": " + title + " (" + times[0].startTime + ")<br />";
+                res += (i + 1) + ": " + title + " (" + times[0].startTime + ")<br>";
             }
             document.getElementById("view").innerHTML = res;
         }
