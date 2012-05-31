@@ -1,50 +1,61 @@
-<!-- ↓引用サイト↓
-http://bunjin.com/java/himekuri.html
--->
+<!DOCTYPE html>
 <HTML>
-<BODY>
-<center>
-
+<head>
+<meta charset="UTF-8">
+<title>aaa</title>
+  
+<style type="text/css">
+  #dayStyte {
+    width:150px;
+    height:150px;
+  }
+</style>
 
 <script language="JavaScript">
-var today=new Date();
-var this_day=today.getDay();
-var this_date=today.getDate();
-var this_month=today.getMonth();
-var this_year=today.getFullYear();
+<!--
+  function Day_Text(day_num) {
+    var Day = new Array("Sun", "Mon", "Tue", "Web", "Thurs", "Fri", "Sat");
+    return Day[day_num];
+  }
 
-<!-- 曜日の宣言 -->
-function Day_Text (day_num) {
-  var Day=new Array("Sun","Mon","Tue","Web","Thurs","Fri","Sat");
-  return Day[day_num];
-}
+  function Month_Text (month_num) {
+    var Month = new Array("Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec");
+    return Month[month_num];
+  }
 
-var DayName=Day_Text(this_day);
+  function daywrite(){
+    var today = new Date();
+    var this_day = today.getDay();
+    var this_date = today.getDate();
+    var this_month = today.getMonth();
+    var this_year = today.getFullYear();
 
-<!-- 各月の宣言 -->
-function Month_Text (month_num) {
-  var Month=new Array("Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec");
-  return Month[month_num];
-}
-var MonthName=Month_Text(this_month);
+    var MonthName=Month_Text(this_month);
+    var DayName = Day_Text(this_day);
+    
+    if (DayName == "Sun") DayName = "<font color=red>"+DayName+"</font>";
+    if (DayName == "Sat") DayName = "<font color=blue>"+DayName+"</font>";
 
-<!-- 日曜なら赤文字へ、土曜なら青文字へ -->
-if (DayName == "Sun") DayName = "<font color=red>"+DayName+"</font>";
-if (DayName == "Sat") DayName = "<font color=blue>"+DayName+"</font>";
+    var canvas = document.getElementById('dayStyte');
+    if (canvas.getContext) {
+      var context = canvas.getContext('2d');
+      context.font = "20px 'メイリオ'";
+      context.fillText(MonthName, 55, 45);
 
+      context.font = "60px 'メイリオ'";
+      context.fillText(this_date, 45, 90);
 
-<!-- 各文字の設定 -->
-MonthName = "<font size=2>"+MonthName+"</font>";
-this_date = "<font size=7><strong>"+this_date+"</strong></font>";
-DayName = "<font size=2>"+DayName+"</font>";
-
-<!-- 描画 -->
-document.write("<TABLE BORDER=3 BGCOLOR=WHITE cellpadding=6 cellspacing=4>");
-document.write("<TR><TD align=center nowrap>"+MonthName+"<br>"+this_date+"<br>"+DayName);
-document.write("</TD></TR></TABLE><br>");
-
-
+      context.font = "20px 'メイリオ'";
+      context.fillText(DayName, 50, 110);
+    }
+  }
+//-->
 </script>
-</center>
+</head>
+
+<BODY onLoad="daywrite()">
+  <div>
+    <canvas id="dayStyte" width="150" height="150"></canvas>
+  </div>
 </BODY>
 </HTML>

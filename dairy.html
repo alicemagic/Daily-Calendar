@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<HTML>
+<head>
+<style type="text/css">
+  #clockCanvas_h {
+    background-color:tranceparent;
+    width:150px;
+    height:150px;
+    position:absolute;
+  }
+
+  #dayStyte {
+    background-color:tranceparent;
+    width:150px;
+    height:150px;
+    position:absolute
+  }
+
+  #clockCanvas_m {
+    background-color:tranceparent;
+    width:150px;
+    height:150px;
+    position:absolute;
+  }
+
+  #clockCanvas_s {
+    background-color:tranceparent;
+    width:150px;
+    height:150px;
+    position:absolute;
+  }
+</style>
+
+<script language="JavaScript">
+<!--
+  function Day_Text(day_num) {
+    var Day = new Array("Sun", "Mon", "Tue", "Web", "Thu", "Fri", "Sat");
+    return Day[day_num];
+  }
+
+  function Month_Text (month_num) {
+    var Month = new Array("Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec");
+    return Month[month_num];
+  }
+
+  function daywrite(){
+    var today = new Date();
+    var this_day = today.getDay();
+    var this_date = today.getDate();
+    var this_month = today.getMonth();
+    var this_year = today.getFullYear();
+
+    var MonthName=Month_Text(this_month);
+    var DayName = Day_Text(this_day);
+    
+    if (DayName == "Sun") DayName = "<font color=red>"+DayName+"</font>";
+    if (DayName == "Sat") DayName = "<font color=blue>"+DayName+"</font>";
+
+    var canvas = document.getElementById('dayStyte');
+    if (canvas.getContext) {
+      var context = canvas.getContext('2d');
+      context.font = "20px 'メイリオ'";
+      context.fillText(MonthName, 55, 45);
+
+      context.font = "60px 'メイリオ'";
+      context.fillText(this_date, 40, 90);
+
+      context.font = "20px 'メイリオ'";
+      context.fillText(DayName, 55, 115);
+    }
+  }
+
+  //----------------------dspClock--------------------//
+  function DspClk() {
+    //date関数を利用して、時・分・秒の取得
+    DD = new Date();
+    Hours = DD.getHours();
+    Minutes = DD.getMinutes();
+    Seconds = DD.getSeconds();
+    
+    //各メソッドの呼び出し
+    drawHours(parseInt(Hours));        //内側(時)※以下「時」
+    drawMinutes(parseInt(Minutes));　　//真ん中(分)※以下「分」
+    drawSecond(parseInt(Seconds));     //外側(秒)※以下「秒」
+  }
+
+  //----------------------drawHours-------------------//
+  function drawHours(hours){
+    var canvas = document.getElementById('clockCanvas_h');    //描画領域の確保
+    if ( ! canvas || ! canvas.getContext ) { return false; }
+    var ctx = canvas.getContext("2d");
+
+    ctx.lineWidth = 6;
+    ctx.lineCap = "round";
+    ctx.beginPath();
+    ctx.arc(75, 75, 54, (270*Math.PI/180),  (hours*15*Math.PI/180)- (Math.PI/2), false);
+   
+    ctx.stroke();
+    if(hours == 0){
+      ctx.clearRect(0,0,150,150);
+    }
+    ctx.closePath();
+  }
+
+  //分の描画
+  function drawMinutes(minutes){
+    var canvas = document.getElementById('clockCanvas_m');    //描画領域の確保
+    if ( ! canvas || ! canvas.getContext ) { return false; }
+    var ctx = canvas.getContext("2d");     
+
+    ctx.lineWidth = 6;
+    ctx.lineCap = "round";
+    ctx.beginPath();
+    ctx.arc(75, 75, 62, (270*Math.PI/180),  (minutes*6*Math.PI/180)- (Math.PI/2), false);
+    ctx.stroke();
+    if(minutes == 0){
+      ctx.clearRect(0,0,150,150);
+    }
+    ctx.closePath();
+  }
+
+  //秒の描画
+  function drawSecond(seconds){
+    var canvas = document.getElementById('clockCanvas_s');    //描画領域の確保
+    if ( ! canvas || ! canvas.getContext ) { return false; }
+    var ctx = canvas.getContext("2d");
+
+    ctx.lineWidth = 6;
+    ctx.lineCap = "round";
+    ctx.beginPath();
+
+    //============================ここから==============================//
+    ctx.arc(75, 75, 70, (3/2*Math.PI), (seconds*6*Math.PI/180)- (Math.PI/2), false);
+    ctx.stroke();
+    if(seconds == 0){
+      ctx.clearRect(0,0,150,150);
+    }
+    ctx.closePath();
+  }
+//-->
+</script>
+</head>
+
+<BODY onLoad="daywrite()">
+  <SCRIPT language="JavaScript">
+    setInterval("DspClk()", 50);
+  </SCRIPT>
+
+  <div>
+    <canvas id="clockCanvas_h" width="150" height="150"></canvas>
+    <canvas id="clockCanvas_m" width="150" height="150"></canvas>
+    <canvas id="clockCanvas_s" width="150" height="150"></canvas>
+    <canvas id="dayStyte" width="150" height="150"></canvas>
+  </div>
+</BODY>
+</HTML>
