@@ -1,7 +1,7 @@
-<!-- 2012/05/29 —\’è‚ðˆø—p‚Å‚«‚È‚¢ƒoƒO‚ð‰ðÁ
-                onmouseoverŠÖ”—p‚ÌƒeƒXƒg‰æ‘œ‚ð”z’u                
+<!-- 2012/05/29 ï¿½\ï¿½ï¿½ï¿½ï¿½pï¿½Å‚ï¿½ï¿½È‚ï¿½ï¿½oï¿½Oï¿½ï¿½ï¿½ï¿½
+                onmouseoverï¿½Öï¿½ï¿½pï¿½Ìƒeï¿½Xï¿½gï¿½æ‘œï¿½ï¿½zï¿½u                
 -->
-<!-- «ˆø—pƒTƒCƒg«
+<!-- ï¿½ï¿½ï¿½ï¿½pï¿½Tï¿½Cï¿½gï¿½ï¿½
   http://libro.tuyano.com/index3?id=95001
 -->
 <html>
@@ -9,20 +9,20 @@
         <title>Sample Page</title>
         <script src="http://www.google.com/jsapi"></script>
           <script language="JavaScript">
-      <!-- googleƒJƒŒƒ“ƒ_[‚©‚ç—\’è‚ðŽ‚Á‚Ä‚­‚é -->
+      <!-- googleï¿½Jï¿½ï¿½ï¿½ï¿½ï¿½_ï¿½[ï¿½ï¿½ï¿½ï¿½\ï¿½ï¿½ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½ -->
         google.load("gdata","2");
  
         var service = null;
         
-        <!-- —\’è‚ðŽ‚Á‚Ä‚­‚éêŠ‚ðŽw’è -->
+        <!-- ï¿½\ï¿½ï¿½ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½êŠï¿½ï¿½wï¿½ï¿½ -->
         var url = "http://www.google.com/calendar/feeds/h3d6rk1th4e58h8qo9q6bcoco8@group.calendar.google.com/public/full";
          
         google.setOnLoadCallback(getMyFeed);
 
 
-        document.write("<img src='—\’è.png' border='0'>");
+        document.write("<img src='ï¿½\ï¿½ï¿½.png' border='0'>");
         
-        <!-- ”NŒŽ“ú‚ðŽw’è‚µ‚Ä—\’è‚ðŽ‚Á‚Ä‚­‚é -->
+        <!-- ï¿½Nï¿½ï¿½ï¿½ï¿½ï¿½wï¿½è‚µï¿½Ä—\ï¿½ï¿½ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½ -->
         function getMyFeed(){
             service = new google.gdata.calendar.CalendarService("Daily_Calendar");
             query = new google.gdata.calendar.CalendarEventQuery(url);
@@ -38,7 +38,7 @@
         }
 
 
-        <!-- —\’è‚ð•`‰æ -->
+        <!-- ï¿½\ï¿½ï¿½ï¿½`ï¿½ï¿½ -->
         function callback(result) {
             var entries = result.feed.entry;
             var res = "";
@@ -51,7 +51,7 @@
             document.getElementById("view").innerHTML = res;
         }
 
-        <!-- ƒGƒ‰[‚ªo‚½ê‡‚Ìˆ— -->
+        <!-- ï¿½Gï¿½ï¿½ï¿½[ï¿½ï¿½ï¿½oï¿½ï¿½ï¿½ê‡ï¿½Ìï¿½ï¿½ï¿½ -->
         function handleError(error) {
           document.getElementById("view").innerHTML = error;
         }
