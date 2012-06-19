@@ -1,0 +1,112 @@
+<script type="text/javascript">
+<!--
+
+// カレンダーオブジェクト
+var LDBCalendar = {};
+
+// エレメントの抽出と記事の有無をプロパティに追加
+LDBCalendar.getEls = function() {
+  var el_div = document.getElementsByTagName('div');
+
+  for (var i = 0; i < el_div.length; i++) {
+    if (el_div[i].className == 'calendarhead') {
+
+      // calendarheadのエレメント
+      this.elHead = el_div[i];
+
+      var elCalBody = el_div[i + 2].getElementsByTagName('table')[2];
+
+      // 日付部分のtdタグエレメント
+      this.elTd = elCalBody.getElementsByTagName('td');
+
+      // その月に記事があるかどうか
+      this.hasArticle = (elCalBody.getElementsByTagName('a').length > 0);
+
+      break;
+    }
+  }
+};
+
+
+// 土日のtdエレメントにクラス名を付ける
+LDBCalendar.setSatSun = function() {
+  if (!this.elTd) this.getEls();
+
+  // 週単位で繰り返す
+  for (var i = 0; i < this.elTd.length; i+=7) {
+    this.elTd[i].className += ' sun';
+    this.elTd[i + 6].className += ' sat';
+  }
+};
+
+
+// カレンダーから年月を取得する
+LDBCalendar.getYearMonth = function() {
+  var calh = this.elHead.innerHTML;
+
+  // 英語か日本語かの判定も一緒に行う
+  if (calh.match(/(\d{4})年(\d{1,2})月/)) {
+    this.year = RegExp.$1;
+    this.month = RegExp.$2;
+    this.isEn = false;
+  } else if (calh.match(/(\w+),(\d{4})/)) {
+    this.year = RegExp.$2;
+    this.month = new Date(RegExp.$1 + ', 1 ' + this.year + ' 00:00:00').getMonth() + 1;
+    this.isEn = true;
+  }
+};
+
+
+// 初日が何番目のtdエレメントにあるかを調べる
+LDBCalendar.get1st = function() {
+  if (!this.elTd) this.getEls();
+
+  for (var i = 0; i < 7; i++) {
+    if (this.elTd[i].innerHTML.match('1')) {
+      this.first = i;
+      return;
+    }
+  }
+};
+
+
+// 祝日のtdエレメントにクラス名を付ける
+LDBCalendar.setHoliday = function() {
+  if (!this.year) this.getYearMonth();
+  if (!this.first) this.get1st();
+
+  var start_min = this.year + '-' + ('0' + this.month).slice(-2) + '-01';
+  // ↓翌年の1月を13月としても同じ内容が取得できる
+  var start_max = this.year + '-' + ('0' + (this.month + 1)).slice(-2) + '-01';
+  var callback = 'LDBCalendar.handleJson';
+  var url = 'http://www.google.com/calendar/feeds/japanese__ja@holiday.calendar.google.com/public/full-noattendees?alt=json-in-script';
+  url += '&callback=' + callback + '&start-min=' + start_min + '&start-max=' + start_max;
+
+  // JSONPをインクルード (コールバック関数の実行)
+  var elScript = document.createElement("script");
+  elScript.type = 'text/javascript';
+  elScript.src = url;
+  elScript.charset = 'UTF-8';
+  document.getElementsByTagName('head')[0].appendChild(elScript);
+};
+
+
+// コールバック関数(JSONP側で実行される)
+LDBCalendar.handleJson = function(json) {
+  var c, e = json.feed.entry;
+
+  // JSONから祝日を取り出して、
+  // 該当tdにクラス名と祝日名のタイトル属性を付ける
+  for (var i in e) {
+    c = e[i].gd$when[0].startTime.slice(-2) - 1 + this.first;
+    this.elTd[c].setAttribute('title', e[i].title.$t);
+    this.elTd[c].className += ' holiday';
+  }
+
+};
+
+LDBCalendar.setSatSan();
+LDBCalendar.setHoliday();
+
+//-->
+</script>

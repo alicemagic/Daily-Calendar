@@ -1,28 +1,26 @@
-<!-- 2012/05/29 —\’è‚ðˆø—p‚Å‚«‚È‚¢ƒoƒO‚ð‰ðÁ
-                onmouseoverŠÖ”—p‚ÌƒeƒXƒg‰æ‘œ‚ð”z’u                
+<!-- 2012/05/29 äºˆå®šã‚’å¼•ç”¨ã§ããªã„ãƒã‚°ã‚’è§£æ¶ˆ
+                onmouseoveré–¢æ•°ç”¨ã®ãƒ†ã‚¹ãƒˆç”»åƒã‚’é…ç½®                
 -->
-<!-- «ˆø—pƒTƒCƒg«
+<!-- â†“å¼•ç”¨ã‚µã‚¤ãƒˆâ†“
   http://libro.tuyano.com/index3?id=95001
 -->
 <html>
-    <head> 
+    <head>
         <title>Sample Page</title>
         <script src="http://www.google.com/jsapi"></script>
           <script language="JavaScript">
-      <!-- googleƒJƒŒƒ“ƒ_[‚©‚ç—\’è‚ðŽ‚Á‚Ä‚­‚é -->
+      <!-- googleã‚«ãƒ¬ãƒ³ãƒ€ãƒ¼ã‹ã‚‰äºˆå®šã‚’æŒã£ã¦ãã‚‹ -->
         google.load("gdata","2");
  
         var service = null;
         
-        <!-- —\’è‚ðŽ‚Á‚Ä‚­‚éêŠ‚ðŽw’è -->
+        <!-- äºˆå®šã‚’æŒã£ã¦ãã‚‹å ´æ‰€ã‚’æŒ‡å®š -->
         var url = "http://www.google.com/calendar/feeds/h3d6rk1th4e58h8qo9q6bcoco8@group.calendar.google.com/public/full";
          
-        google.setOnLoadCallback(getMyFeed);
-
-
-        document.write("<img src='—\’è.png' border='0'>");
         
-        <!-- ”NŒŽ“ú‚ðŽw’è‚µ‚Ä—\’è‚ðŽ‚Á‚Ä‚­‚é -->
+        google.setOnLoadCallback(getMyFeed);
+        
+        <!-- å¹´æœˆæ—¥ã‚’æŒ‡å®šã—ã¦äºˆå®šã‚’æŒã£ã¦ãã‚‹ -->
         function getMyFeed(){
             service = new google.gdata.calendar.CalendarService("Daily_Calendar");
             query = new google.gdata.calendar.CalendarEventQuery(url);
@@ -35,10 +33,13 @@
             query.setMinimumStartTime(start);
             query.setMaximumStartTime(end);
             service.getEventsFeed(query, callback, handleError);
+            
+            
         }
+            
 
 
-        <!-- —\’è‚ð•`‰æ -->
+        <!-- äºˆå®šã‚’æç”» -->
         function callback(result) {
             var entries = result.feed.entry;
             var res = "";
@@ -51,13 +52,17 @@
             document.getElementById("view").innerHTML = res;
         }
 
-        <!-- ƒGƒ‰[‚ªo‚½ê‡‚Ìˆ— -->
+        <!-- ã‚¨ãƒ©ãƒ¼ãŒå‡ºãŸå ´åˆã®å‡¦ç† -->
         function handleError(error) {
           document.getElementById("view").innerHTML = error;
         }
+  
+        
      </script>
     </head>
     <body>
-      <div id="view" style="color:#096;"></div>
+      <div id="view" style="color:#096;">
+        </div>
+        
     </body>
 </HTML>

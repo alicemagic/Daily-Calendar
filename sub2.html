@@ -1,0 +1,48 @@
+<html>
+    <head>
+        <title>Sample Page</title>
+        <script type="text/javascript">
+            
+        function main(){
+            var day="";
+            var holiday[17][2] = ;
+            var canvas = document.getElementById("canvas");
+            if (canvas.getContext) {
+                var context = canvas.getContext("2d");
+                context.font="60px";
+                context.fillText(day,60,60);
+                //テスト
+/*               var start_min = "aaaaaaa";
+                var stop_max = "";
+                y = today.getFullYear();
+                m = today.getMonth();
+                d = today.getDay();
+                start_min += y + "-";
+                if(m < 10){
+                    start_min += "0" + m + "-";
+                }else{
+                    start_min += m + "-";
+                }
+        
+                if(d < 10){
+                    start_min += "0" + d;
+                }else{
+                    start_min += d;
+                }
+        
+                stop_max = start_min;
+                document.write(start_min);
+                document.write(stop_max.value);*/
+            }
+        }
+            
+        </script>
+        
+    </head>
+    <body onLoad="main()">
+        <div>
+            <canvas id="canvas" width="150" height="150">
+            </canvas>
+        </div>
+    </body>
+</html>
