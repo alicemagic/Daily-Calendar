@@ -1,7 +1,14 @@
+<<<<<<< HEAD
 <!-- 2012/05/29 予定を引用できないバグを解消
                 onmouseover関数用のテスト画像を配置                
 -->
 <!-- ↓引用サイト↓
+=======
+<!-- 2012/05/29 �\����p�ł��Ȃ��o�O����
+                onmouseover�֐��p�̃e�X�g�摜��z�u                
+-->
+<!-- ����p�T�C�g��
+>>>>>>> 2bc013a33a1d80ec60b38dabd30acda6c1db6984
   http://libro.tuyano.com/index3?id=95001
 -->
 <html>
@@ -9,18 +16,34 @@
         <title>Sample Page</title>
         <script src="http://www.google.com/jsapi"></script>
           <script language="JavaScript">
+<<<<<<< HEAD
       <!-- googleカレンダーから予定を持ってくる -->
+=======
+      <!-- google�J�����_�[����\����Ă��� -->
+>>>>>>> 2bc013a33a1d80ec60b38dabd30acda6c1db6984
         google.load("gdata","2");
  
         var service = null;
         
+<<<<<<< HEAD
         <!-- 予定を持ってくる場所を指定 -->
+=======
+        <!-- �\����Ă���ꏊ��w�� -->
+>>>>>>> 2bc013a33a1d80ec60b38dabd30acda6c1db6984
         var url = "http://www.google.com/calendar/feeds/h3d6rk1th4e58h8qo9q6bcoco8@group.calendar.google.com/public/full";
          
         
         google.setOnLoadCallback(getMyFeed);
+<<<<<<< HEAD
         
         <!-- 年月日を指定して予定を持ってくる -->
+=======
+
+
+        document.write("<img src='�\��.png' border='0'>");
+        
+        <!-- �N�����w�肵�ė\����Ă��� -->
+>>>>>>> 2bc013a33a1d80ec60b38dabd30acda6c1db6984
         function getMyFeed(){
             service = new google.gdata.calendar.CalendarService("Daily_Calendar");
             query = new google.gdata.calendar.CalendarEventQuery(url);
@@ -39,7 +62,11 @@
             
 
 
+<<<<<<< HEAD
         <!-- 予定を描画 -->
+=======
+        <!-- �\���`�� -->
+>>>>>>> 2bc013a33a1d80ec60b38dabd30acda6c1db6984
         function callback(result) {
             var entries = result.feed.entry;
             var res = "";
@@ -52,7 +79,11 @@
             document.getElementById("view").innerHTML = res;
         }
 
+<<<<<<< HEAD
         <!-- エラーが出た場合の処理 -->
+=======
+        <!-- �G���[���o���ꍇ�̏��� -->
+>>>>>>> 2bc013a33a1d80ec60b38dabd30acda6c1db6984
         function handleError(error) {
           document.getElementById("view").innerHTML = error;
         }
