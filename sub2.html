@@ -1,3 +1,4 @@
+<!-- 6/21曜日を表示するように実装。年によって変わる祝日(春分の日など)の表示は未実装　-->
 <html>
     <head>
         <title>Sample Page</title>
@@ -7,22 +8,27 @@
 			var day = today.getDate();
 			var month = today.getMonth() + 1;	
             var myday="";
-			var num = 0;
+			var toholiday = "";
+			var flg = 0;
 			//月+日で祝日の配列作成
             var holidaynum = new Array("2","13","32","8","9","10","14","34","35");
 			//祝日名を配列で作成
 			var holiday = new Array(
 				"元旦","建国記念日","昭和の日","憲法記念日","みどりの日","こどもの日","文化の日","勤労感謝の日","天皇誕生日");
 			
-			
-			myday += day + month;
-			for(var x = 0; x < 9 ;x++){
-				if(holidaynum[x] == myday){
-					num = holidaynum[x];
-					break;
+				myday += day + month;
+				document.write(myday);
+				for(var x = 0; x < 9 ;x++){
+					if(holidaynum[x] == myday){
+						toholiday = holiday[x];
+						document.write(toholiday);
+						flg++;
+						break;
+					}
 				}
+			if(flg == 0){
+				document.write("今日は休みじゃねーんだよ");
 			}
-            
         </script>
         
     </head>
