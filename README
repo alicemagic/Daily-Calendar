@@ -1,6 +1,15 @@
+<<<<<<< HEAD
 temp
 aaaaaaa
 bbbbbbb
 
 
+=======
+日めくりカレンダーに、時計・祝日などを表示させる。
+Daily_Calendar.html：主に日めくりカレンダーとしての機能を実装したもの。
+clock.html：時計機能を実装させたもの。
+dairy.html:Daily_Calendar.htmlとclock.htmlを統合させたもの。
+sub2.html：今日が祝日かどうかを判定し、祝日であれば祝日名を表示させる機能をもったもの。(未完成)
+その他のものは、参考になりうると思われるものを、仮として入れたもの。
+>>>>>>> 9f63c8a435ec2af5811538a7ee1bd08dd4d3f26c
 
