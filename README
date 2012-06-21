@@ -1,10 +1,3 @@
-<<<<<<< HEAD
-temp
-aaaaaaa
-bbbbbbb
-
-
-=======
 日めくりカレンダーに、時計・祝日などを表示させる。
 Daily_Calendar.html：主に日めくりカレンダーとしての機能を実装したもの。
 clock.html：時計機能を実装させたもの。
