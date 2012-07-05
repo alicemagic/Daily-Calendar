@@ -1,35 +1,163 @@
-<!-- 6/21曜日を表示するように実装。年によって変わる祝日(春分の日など)の表示は未実装　-->
+<!-- 7/3　春分の日・秋分の日以外の祝日を表示させるように修正(振替休日はまだ)　-->
 <html>
     <head>
-        <title>Sample Page</title>
-        <script type="text/javascript">
+		<title>Sample Page</title>
+        	<script type="text/javascript">
 			//各種変数を設定
 			var today = new Date();
-			var day = today.getDate();
-			var month = today.getMonth() + 1;	
-            var myday="";
-			var toholiday = "";
+			//日
+			var this_day = today.getDate();
+			//月
+			var this_month = today.getMonth() + 1;
+			//年
+			var this_year = today.getFullYear();
+			//年月日
+			var this_days = this_year + "-" + this_month + "-" + this_day;
+			//月日
+			var noyear_days = this_month + "-" + this_day;	
 			var flg = 0;
-			//月+日で祝日の配列作成
-            var holidaynum = new Array("2","13","32","8","9","10","14","34","35");
-			//祝日名を配列で作成
-			var holiday = new Array(
-				"元旦","建国記念日","昭和の日","憲法記念日","みどりの日","こどもの日","文化の日","勤労感謝の日","天皇誕生日");
-			
-				myday += day + month;
-				document.write(myday);
-				for(var x = 0; x < 9 ;x++){
-					if(holidaynum[x] == myday){
-						toholiday = holiday[x];
-						document.write(toholiday);
+			var result_days;
+			//春分の日と、秋分の日を計算
+			var syun = getsyun(this_year);
+			var syuu = getsyuu(this_year);
+	
+			//月に反応して分岐(祝日判定)
+			switch(this_month){
+				//１月
+				case 1:
+					result_days = getWeekOfDay(this_year,this_month,2,1);
+					if(result_days == this_days){
+						document.write("成人の日");
 						flg++;
-						break;
 					}
+					if(noyear_days == "01-01"){
+						document.write("元旦");
+						flg++;
+					}
+					break;
+				//２月
+				case 2:
+					if(noyear_days == "02-11"){
+						document.write("建国記念日");
+						flg++;
+					}
+					break;
+				//３月
+				case 3:
+					if(this_days == syun){
+						document.write("春分の日");
+						flg++;
+					}
+					break;
+				//４月
+				case 4:
+					if(noyear_days == "04-29"){
+						document.write("昭和の日");
+						flg++;
+					}
+					break;
+				//５月
+				case 5:
+					if(noyear_days == "05-03"){
+						document.write("憲法記念日");
+						flg++;
+					}
+					if(noyear_days == "05-04"){
+						document.write("みどりの日");
+						flg++;
+					}
+
+					if(noyear_days == "05-05"){
+						document.write("こどもの日");
+						flg++;
+					}
+					break;
+				//７月
+				case 7:
+					result_days = getWeekOfDay(this_year,this_month,3,1);
+					if(result_days == this_days){
+						document.write("海の日")
+						flg++;
+					}
+					break;
+				//９月
+				case 9:
+					result_days = getWeekOfDay(this_year,this_month,3,1);
+					if(result_days == this_days){
+						document.write("敬老の日")
+						flg++;
+					}
+					break;
+				//１０月	
+				case 10:
+					result_days = getWeekOfDay(this_year,this_month,2,1);
+					if(result_days == this_days){
+						document.write("体育の日");
+						flg++;
+					}
+					if(this_days == syun){
+						document.write("秋分の日");
+						flg++;
+					}
+					break;
+				//１１月
+				case 11:
+					if(noyear_days == "11-03"){
+						document.write("文化の日");
+						flg++;
+					}
+					if(noyear_days == "11-23"){
+						document.write("勤労感謝の日");
+						flg++;
+					}
+					break;
+				//１２月	
+				case 12:
+					if(noyear_days == "12-23"){
+						document.write("天皇誕生日");
+						flg++;
+					}
+					break;	
 				}
-			if(flg == 0){
-				document.write("今日は休みじゃねーんだよ");
+			//祝日判定に引っかからなかった場合(=flg初期値)
+			if(flg == 0)
+				document.write("今日は休みじゃないですよ☆")
+			//第n週かを求める
+			function getWeekOfDay(year, month, week, day) {
+				// 1・指定した年月の最初の曜日を取得
+				var date = new Date(year+"/"+month+"/1");
+				var firstDay = date.getDay();
+
+				// 2・求めたい曜日の第1週の日付けを計算する
+				var day = day - firstDay + 1;
+				if(day <= 0) day += 7;
+
+				// 3・n週まで1週間を足す
+				day += 7 * (week - 1);
+
+				// 4・結果
+				result = new Date(year+"/"+month+"/"+day);
+
+				var Y = parseInt(result.getFullYear());
+				var m = parseInt(result.getMonth())+1;
+				var d = parseInt(result.getDate());
+
+				return (Y+"-"+m+"-"+d);
 			}
-        </script>
-        
+			
+			//春分の日を計算
+			function getsyun(year){
+				var date = 21.4471 + (0.242377 * (year - 1900)) - Math.floor((year -1900)/4.0);
+				var days = Math.floor(date);
+				return days;
+			}
+
+			//秋分の日を計算
+			function getsyuu(year){
+				var date = 23.8896 + (0.242032 * (year - 1900)) - Math.floor((year -1900)/4.0);
+				var days = Math.floor(date);
+				return days;
+			}
+		</script>
     </head>
 </html>
